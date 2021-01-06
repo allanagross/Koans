@@ -11,9 +11,9 @@ describe('About Higher Order Functions', function() {
     const numbers = [1, 2, 3];
     const odd = _.filter(numbers, x => x % 2 !== 0);
 
-    expect(odd).toEqual(FILL_ME_IN);
-    expect(odd.length).toBe(FILL_ME_IN);
-    expect(numbers.length).toBe(FILL_ME_IN);
+    expect(odd).toEqual([1, 3]);
+    expect(odd.length).toBe(2);
+    expect(numbers.length).toBe(3);
   });
 
   it('should use "map" to transform each element', function() {
@@ -29,8 +29,8 @@ describe('About Higher Order Functions', function() {
       return memo + x;
     }, 0);
 
-    expect(reduction).toBe(FILL_ME_IN);
-    expect(numbers).toEqual(FILL_ME_IN);
+    expect(reduction).toBe(6);
+    expect(numbers).toEqual([1, 2, 3]);
   });
 
   it('should use "forEach" for simple iteration', function() {
@@ -42,8 +42,8 @@ describe('About Higher Order Functions', function() {
 
     _.forEach(numbers, isEven);
 
-    expect(msg).toEqual(FILL_ME_IN);
-    expect(numbers).toEqual(FILL_ME_IN);
+    expect(msg).toEqual('falsetruefalse');
+    expect(numbers).toEqual([1, 2, 3]);
   });
 
   it('should use "all" to test whether all items pass condition', function() {
@@ -52,8 +52,8 @@ describe('About Higher Order Functions', function() {
 
     const isEven = x => x % 2 === 0;
 
-    expect(_.all(onlyEven, isEven)).toBe(FILL_ME_IN);
-    expect(_.all(mixedBag, isEven)).toBe(FILL_ME_IN);
+    expect(_.all(onlyEven, isEven)).toBe(true);
+    expect(_.all(mixedBag, isEven)).toBe(false);
   });
 
   it('should use "any" to test if any items passes condition' , function() {
@@ -62,19 +62,19 @@ describe('About Higher Order Functions', function() {
 
     const isEven = x => x % 2 === 0;
 
-    expect(_.any(onlyEven, isEven)).toBe(FILL_ME_IN);
-    expect(_.any(mixedBag, isEven)).toBe(FILL_ME_IN);
+    expect(_.any(onlyEven, isEven)).toBe(true);
+    expect(_.any(mixedBag, isEven)).toBe(true);
   });
 
   it('should use "range" to generate an array', function() {
-    expect(_.range(3)).toEqual(FILL_ME_IN);
-    expect(_.range(1, 4)).toEqual(FILL_ME_IN);
-    expect(_.range(0, -4, -1)).toEqual(FILL_ME_IN);
+    expect(_.range(3)).toEqual([0, 1, 2]);
+    expect(_.range(1, 4)).toEqual([1, 2, 3]);
+    expect(_.range(0, -4, -1)).toEqual([0, -1, -2, -3]);
   });
 
   it('should use "flatten" to make nested arrays easy to work with', function() {
     const nested = [[1, 2], [3, 4]];
-    expect(_.flatten(nested)).toEqual(FILL_ME_IN);
+    expect(_.flatten(nested)).toEqual([1, 2, 3, 4]);
   });
 
   it('should use "chain() ... .value()" to use multiple higher order functions', function() {
@@ -85,7 +85,7 @@ describe('About Higher Order Functions', function() {
       .reduce((sum, x) => sum + x)
       .value();
 
-    expect(result).toEqual(FILL_ME_IN);
+    expect(result).toEqual(6);
   });
 
 });

@@ -5,7 +5,7 @@ describe('About Functions', function() {
       return a + b;
     }
 
-    expect(add(1, 2)).toBe(FILL_ME_IN);
+    expect(add(1, 2)).toBe(3);
   });
 
   it('should know internal variables override outer variables', function () {
@@ -21,9 +21,9 @@ describe('About Functions', function() {
       return message;
     }
 
-    expect(getMessage()).toBe(FILL_ME_IN);
-    expect(overrideMessage()).toBe(FILL_ME_IN);
-    expect(message).toBe(FILL_ME_IN);
+    expect(getMessage()).toBe("Outer");
+    expect(overrideMessage()).toBe("Inner");
+    expect(message).toBe("Outer");
   });
 
   it('should have lexical scoping', function() {
@@ -38,7 +38,7 @@ describe('About Functions', function() {
       return childFunction();
     }
 
-    expect(parentFunction()).toBe(FILL_ME_IN);
+    expect(parentFunction()).toBe("local");
   });
 
   it('should use lexical scoping to synthesise functions', function() {
@@ -51,7 +51,7 @@ describe('About Functions', function() {
     const increaseBy3 = makeIncreaseByFunction(3);
     const increaseBy5 = makeIncreaseByFunction(5);
 
-    expect(increaseBy3(10) + increaseBy5(10)).toBe(FILL_ME_IN);
+    expect(increaseBy3(10) + increaseBy5(10)).toBe(28);
   });
 
   it('should allow extra function arguments', function() {
@@ -59,13 +59,13 @@ describe('About Functions', function() {
       return firstArg;
     }
 
-    expect(returnFirstArg('first', 'second', 'third')).toBe(FILL_ME_IN);
+    expect(returnFirstArg('first', 'second', 'third')).toBe("first");
 
     function returnSecondArg(firstArg, secondArg) {
       return secondArg;
     }
 
-    expect(returnSecondArg('only give first arg')).toBe(FILL_ME_IN);
+    expect(returnSecondArg('only give first arg')).toBe(undefined);
 
     function returnAllArgs() {
       const argsArray = [];
@@ -76,7 +76,7 @@ describe('About Functions', function() {
       return argsArray.join(',');
     }
 
-    expect(returnAllArgs('first', 'second', 'third')).toBe(FILL_ME_IN);
+    expect(returnAllArgs('first', 'second', 'third')).toBe("first,second,third");
   });
 
   it('should pass functions as values', function() {
@@ -84,21 +84,24 @@ describe('About Functions', function() {
     const appendDoubleRules = name => `${name} totally rules!`;
 
     const praiseSinger = { givePraise: appendRules };
-    expect(praiseSinger.givePraise('John')).toBe(FILL_ME_IN);
+    expect(praiseSinger.givePraise('John')).toBe("John rules!");
 
     praiseSinger.givePraise = appendDoubleRules;
-    expect(praiseSinger.givePraise('Mary')).toBe(FILL_ME_IN);
+    expect(praiseSinger.givePraise('Mary')).toBe("Mary totally rules!");
 
   });
 
   it('should use function body as a string', function() {
     const add = new Function('a', 'b', 'return a + b;');
-    expect(add(1, 2)).toBe(FILL_ME_IN);
+    expect(add(1, 2)).toBe(3);
 
     const multiply = function (a, b) {
       // An internal comment
       return a * b;
     };
-    expect(multiply.toString()).toBe(FILL_ME_IN);
+    expect(multiply.toString()).toBe(`function (a, b) {
+      // An internal comment
+      return a * b;
+    }`);
   });
 });
